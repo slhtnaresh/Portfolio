@@ -58,7 +58,71 @@
     <div id="lead">
         <div id="lead-content">
             <h1>Loganathan Naresh</h1>
-            <h2>IT Administrator & Support Technician</h2>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Animation with Sticky Prefix</title>
+  <style>
+    .typewriter {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      color: blue;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <h2 class="typewriter" id="typewriter">I’m </h2>
+
+  <script>
+    const prefix = "I’m ";
+    const words = [
+      "IT Administrator & Support Technician",
+      "Network Specialist",
+      "Security Analyst"
+    ];
+
+    let currentWordIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typewriter = document.getElementById("typewriter");
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseAfterTyping = 1000;
+
+    function type() {
+      const currentWord = words[currentWordIndex];
+
+      if (isDeleting) {
+        currentCharIndex--;
+      } else {
+        currentCharIndex++;
+      }
+
+      typewriter.textContent = prefix + currentWord.substring(0, currentCharIndex);
+
+      if (!isDeleting && currentCharIndex === currentWord.length) {
+        // finished typing
+        isDeleting = true;
+        setTimeout(type, pauseAfterTyping);
+        return;
+      } else if (isDeleting && currentCharIndex === 0) {
+        // finished deleting, move to next word
+        isDeleting = false;
+        currentWordIndex = (currentWordIndex + 1) % words.length;
+      }
+
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    type();
+  </script>
+</body>
+</html>
+
             <a href="Naresh's Resume.pdf" class="btn-rounded-white" target="_blank">Download Resume</a>
         </div>
         <!-- End #lead-content -->
